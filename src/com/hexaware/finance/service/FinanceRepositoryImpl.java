@@ -63,7 +63,7 @@ public class FinanceRepositoryImpl implements IFinanceRepository{
 	}
 
 	@Override
-	public boolean updateexpense(int userId, Expenses expense) {
+	public boolean updateExpense(int userId, Expenses expense) {
 		// TODO Auto-generated method stub
 		boolean updated=dao.updateexpense(userId, expense);
 		return updated;
@@ -77,7 +77,7 @@ public class FinanceRepositoryImpl implements IFinanceRepository{
 	}
 
 	@Override
-	public List<Expenses> getexpenserange(int userId, Date d1, Date d2) {
+	public List<Expenses> getExpenseRange(int userId, Date d1, Date d2) {
 		// TODO Auto-generated method stub
 		List<Expenses>expenseList=new ArrayList<>();
 		expenseList=dao.getexpenserange(userId, d1, d2);

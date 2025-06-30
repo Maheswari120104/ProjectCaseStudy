@@ -14,7 +14,7 @@ public interface IFinanceRepository {
 	boolean deleteUser(int userId) throws UserNotFoundException;
 	boolean deleteExpenses(int expenseId) throws ExpenseNotFoundException;
 	List<Expenses> getAllExpenses(int userId) throws UserNotFoundException;
-	boolean updateexpense(int userId,Expenses expense);
+	boolean updateExpense(int userId,Expenses expense);
 	boolean login(String username,String password );
-    List<Expenses> getexpenserange(int userId,Date d1,Date d2 );
+    List<Expenses> getExpenseRange(int userId,Date d1,Date d2 );
 }

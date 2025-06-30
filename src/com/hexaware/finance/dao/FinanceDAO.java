@@ -149,7 +149,7 @@ public class FinanceDAO implements IFinanceRepository{
 	}
 
 	@Override
-	public boolean updateexpense(int userId, Expenses expense) {
+	public boolean updateExpense(int userId, Expenses expense) {
 		// TODO Auto-generated method stub
 		String query="update expenses set amount=?,date=?,description=?,category_id=? where user_id=? and expense_id=?";
 		try(Connection con=DBUtil.getConnection();
@@ -193,7 +193,7 @@ public class FinanceDAO implements IFinanceRepository{
 	}
 
 	@Override
-	public List<Expenses> getexpenserange(int userId, Date d1, Date d2) {
+	public List<Expenses> getExpenseRange(int userId, Date d1, Date d2) {
 		// TODO Auto-generated method stub
 		List<Expenses> expenseList=new ArrayList<>();
 		String query="select * from expenses where user_id=? and date between ?and ?";

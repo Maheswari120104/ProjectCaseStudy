@@ -109,7 +109,7 @@ public static void main(String[] args) {
 					int id=sc.nextInt();
 			boolean b = false;
 			try {
-				b = dao.deleteUser(id);//throw new UserNotFoundException("user id is not found");
+				b = dao.deleteUser(id);
 			} catch (UserNotFoundException e) {
 				// TODO Auto-generated catch block
 				System.out.println(e.getMessage());
@@ -130,7 +130,7 @@ public static void main(String[] args) {
 			boolean b1 = false;
 			try {
 				b1 = dao.deleteExpenses(id1);
-				//throw new ExpenseNotFoundException("error:expense id is not found");
+				
 			} catch (ExpenseNotFoundException e) {
 				System.out.println(e.getMessage());
 				// TODO Auto-generated catch block
@@ -179,7 +179,7 @@ public static void main(String[] args) {
 					exp.setCategoryId(c);
 					
 					
-					boolean m=dao.updateexpense(id4, exp);
+					boolean m=dao.updateExpense(id4, exp);
 					if(m==true) {
 	        			System.out.println("updated successfully");
 	        			
@@ -214,7 +214,7 @@ public static void main(String[] args) {
 					Date d1=Date.valueOf(date1);
 					Date d2=Date.valueOf(date2);
 					
-					expenseList=dao.getexpenserange(id5, d1, d2);
+					expenseList=dao.getExpenseRange(id5, d1, d2);
 					
 					System.out.println(expenseList);
 					break;
