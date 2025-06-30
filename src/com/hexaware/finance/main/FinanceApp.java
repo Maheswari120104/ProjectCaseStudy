@@ -7,6 +7,8 @@ import com.hexaware.finance.casestudy.exception.UserNotFoundException;
 import com.hexaware.finance.dao.FinanceDAO;
 import com.hexaware.finance.util.PropertyUtil;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ public static void main(String[] args) {
 	while(true){
 		FinanceDAO dao=new FinanceDAO();
 		Scanner sc=new Scanner(System.in);
+		System.out.println("Finance App");
 		System.out.println("1.create user");
 		System.out.println("2.create expense");
 		System.out.println("3.delete user");
@@ -26,7 +29,8 @@ public static void main(String[] args) {
 		System.out.println("6.update expense");
 		System.out.println("7.login user");
 		System.out.println("8.Expenses between a particular range of dates");
-		System.out.println("9.exit");		
+		System.out.println("9.property file");
+		System.out.println("10.exit");		
 		//String constr=PropertyUtil.getPropertyString("db.properties");
 		//System.out.println("Connection URL: "+constr);
 		int opt=sc.nextInt();
@@ -79,6 +83,7 @@ public static void main(String[] args) {
         		System.out.println("enter date");
         		String date=sc.next();
         		Date d=Date.valueOf(date);
+        		sc.nextLine();
         		System.out.println("enter description");
         		String description=sc.next();
         		System.out.println("enter category name");
@@ -104,9 +109,10 @@ public static void main(String[] args) {
 					int id=sc.nextInt();
 			boolean b = false;
 			try {
-				b = dao.deleteUser(id);
+				b = dao.deleteUser(id);//throw new UserNotFoundException("user id is not found");
 			} catch (UserNotFoundException e) {
 				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
 				e.printStackTrace();
 			}
 					if(b==true) {
@@ -124,7 +130,9 @@ public static void main(String[] args) {
 			boolean b1 = false;
 			try {
 				b1 = dao.deleteExpenses(id1);
+				//throw new ExpenseNotFoundException("error:expense id is not found");
 			} catch (ExpenseNotFoundException e) {
+				System.out.println(e.getMessage());
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -142,7 +150,9 @@ public static void main(String[] args) {
 					int id2=sc.nextInt();
 			try {
 				System.out.println(dao.getAllExpenses(id2));
+				throw new UserNotFoundException("error:user id is not found");
 			} catch (UserNotFoundException e) {
+				System.out.println(e.getMessage());
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -159,8 +169,10 @@ public static void main(String[] args) {
 					String date=sc.next();
 	        		Date d=Date.valueOf(date);
 					exp.setDate(d);
+					sc.nextLine();
 					System.out.println("enter the description");
-					exp.setDescription(sc.next());
+					String s=sc.nextLine();
+					exp.setDescription(s);
 					System.out.println("enter the category Id");
 					ExpenseCategories c=new ExpenseCategories();
 					c.setCategoryId(sc.nextInt());
@@ -202,11 +214,14 @@ public static void main(String[] args) {
 					Date d1=Date.valueOf(date1);
 					Date d2=Date.valueOf(date2);
 					
-					expenseList=dao.getexpenserange(1, d1, d2);
+					expenseList=dao.getexpenserange(id5, d1, d2);
 					
 					System.out.println(expenseList);
 					break;
 				case 9:
+					String constr=PropertyUtil.getPropertyString("db.properties");
+					System.out.println("Connection URL: "+constr);
+				case 10:
 					System.exit(1);
 					break;
 					

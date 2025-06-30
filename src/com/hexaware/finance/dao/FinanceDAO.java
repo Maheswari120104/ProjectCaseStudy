@@ -76,7 +76,7 @@ public class FinanceDAO implements IFinanceRepository{
 				return true;
 			}
 			else {
-				throw new UserNotFoundException("error:user is not found");
+				throw new UserNotFoundException("error:user id is not found");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -97,7 +97,7 @@ public class FinanceDAO implements IFinanceRepository{
 				return true;
 			}
 			else {
-				throw new ExpenseNotFoundException("error:expense is not found");
+				throw new ExpenseNotFoundException("error:expense id is not found");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -136,7 +136,7 @@ public class FinanceDAO implements IFinanceRepository{
 			    expenseList.add(e);
 			}
 			if(!found) {
-				throw new UserNotFoundException("error:user is not found");
+				throw new UserNotFoundException("error:user id is not found");
 			}
 		         		
 		} catch (SQLException e1) {
